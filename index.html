@@ -6,163 +6,144 @@
   <title>ワークシート</title>
   <link rel="icon" href="/Users/satou/Downloads/unnamed.png" type="image/x-icon">
   <style>
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f7fc;
-  color: #333; 
-  transition: all 0.3s ease;
-}
-
-body.dark-mode {
-  background-color: #121212;
-  color: #eaeaea;
-}
-
-header {
-  background-color: #007bff;
-  color: rgb(0, 0, 0);
-  padding: 15px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-header.dark-mode {
-  background-color: #0056b3;
-}
-
-#controls {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-
-#toggle-dark-mode {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #007bff;
-  color: white;
-  transition: all 0.3s ease;
-  margin-top: 10px;
-}
-.grid-item.active {
-  background-color: #007bff;
-  color: white; /* 全体の文字色を白くする */
-}
-
-.grid-item.active .class-name,
-.grid-item.active .class-time {
-  color: white; /* 名前と時間部分の文字色を明確に白く指定 */
-}
-#toggle-dark-mode:hover {
-  background-color: #0056b3;
-}
-
-#toggle-dark-mode.dark-mode {
-  background-color: #333;
-  color: #f4f7fc;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 20px;
-}
-
-.day-container {
-  margin-bottom: 30px;
-}
-
-.day-container h2 {
-  font-size: 22px;
-  margin-bottom: 15px;
-  color: black; 
-  text-transform: uppercase;
-}
-
-.grid-item {
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-body.dark-mode .grid-item {
-  background-color: #333;
-  color: #eaeaea;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.grid-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.grid-item.active {
-  background-color: #007bff;
-  color: white;
-}
-
-.class-name {
-  font-size: 18px;
-  font-weight: bold;
-  color: black; 
-}
-
-.class-time {
-  font-size: 14px;
-  color: #666;
-  margin-top: 10px;
-}
-
-.day-container h2 {
-      font-size: 22px;
-      margin-bottom: 15px;
-      color: #007bff;
-      text-transform: uppercase;
-      text-align: center; 
+    /* フォントと全体の背景 */
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8; /* 少し柔らかいグレーブルー */
+      color: #333; 
+      transition: all 0.3s ease;
     }
 
-footer {
-  text-align: center;
-  padding: 15px;
-  background-color: #007bff;
-  color: white;
-  margin-top: 40px;
-  font-size: 14px;
-}
+    a {
+      text-decoration: none; /* リンクの下線を消す */
+    }
 
-footer.dark-mode {
-  background-color: #0056b3;
-}
+    /* ヘッダーのおしゃれなグラデーション */
+    header {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      letter-spacing: 2px;
+    }
 
-@media (max-width: 768px) {
-  header {
-    font-size: 20px;
-  }
+    /* グリッドレイアウト */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-  #toggle-dark-mode {
-    font-size: 14px;
-  }
+    .day-container {
+      margin-bottom: 40px;
+      margin-top: 30px;
+    }
 
-  .grid-item {
-    padding: 15px;
-  }
-}
+    /* 曜日の見出し */
+    .day-container h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    /* 見出しの下に可愛いラインを引く */
+    .day-container h2::after {
+      content: '';
+      display: block;
+      width: 50%;
+      height: 3px;
+      background: #4facfe;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    /* カードのデザイン（アプリ風） */
+    .grid-item {
+      background-color: white;
+      border-radius: 16px; /* 角を大きめに丸く */
+      padding: 25px 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05); /* ふんわりした影 */
+      text-align: center;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+      cursor: pointer;
+      border: 1px solid #e1e8ed;
+    }
+
+    /* マウスを乗せたときのアニメーション */
+    .grid-item:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      border-color: #4facfe;
+    }
+
+    .class-name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 8px;
+      transition: color 0.3s;
+    }
+
+    .class-time {
+      font-size: 14px;
+      color: #8898aa;
+      font-weight: 500;
+      background-color: #f8f9fa;
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+
+    /* 今の時間のカードが光るデザイン */
+    .grid-item.active {
+      background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%);
+      border: none;
+      box-shadow: 0 10px 20px rgba(0, 123, 255, 0.4);
+      animation: pulse 2s infinite; /* ふわふわ光るアニメーション */
+      color: white;
+    }
+
+    .grid-item.active .class-name {
+      color: white;
+    }
+
+    .grid-item.active .class-time {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    /* ふわふわ光るアニメーションの設定 */
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(0, 123, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        font-size: 20px;
+        padding: 15px;
+      }
+      .grid-item {
+        padding: 20px 15px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -170,7 +151,7 @@ footer.dark-mode {
     簡単ワークシート
   </header>
 
-  <!-- その他の科目（IDの重複を避けるため id="other" に変更） -->
+  <!-- その他の科目 -->
   <div class="day-container" id="other">
     <h2>その他</h2>
     <div class="grid-container">
@@ -203,7 +184,7 @@ footer.dark-mode {
     </div>
   </div>
 
-  <!-- 火曜日の科目（IDを tuesday に変更） -->
+  <!-- 火曜日の科目 -->
   <div class="day-container" id="tuesday">
     <h2>火曜日</h2>
    <div class="grid-container">
@@ -249,7 +230,7 @@ footer.dark-mode {
     </div>
   </div>
 
-  <!-- 木曜日の科目（IDを thursday に変更） -->
+  <!-- 木曜日の科目 -->
   <div class="day-container" id="thursday">
     <h2>木曜日</h2>
    <div class="grid-container">
@@ -306,11 +287,9 @@ footer.dark-mode {
         "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"
       ];
 
-      // 今日の曜日のIDを取得
       const todayId = daysOfWeek[currentDay];
       const currentDayContainer = document.getElementById(todayId);
 
-      // もしその曜日のコンテナが無ければ（土日など）、ここで処理を終了してエラーを防ぐ
       if (!currentDayContainer) {
         return; 
       }
@@ -318,7 +297,6 @@ footer.dark-mode {
       const items = currentDayContainer.querySelectorAll('.grid-item');
 
       items.forEach(item => {
-        // data-start-time と data-end-time が設定されているか確認
         const startTimeAttr = item.getAttribute("data-start-time");
         const endTimeAttr = item.getAttribute("data-end-time");
 
@@ -329,7 +307,6 @@ footer.dark-mode {
           const startTimeInMinutes = parseInt(startTime[0]) * 60 + parseInt(startTime[1]);
           const endTimeInMinutes = parseInt(endTime[0]) * 60 + parseInt(endTime[1]);
           
-          // 現在時刻を分単位に変換
           const currentTimeInMinutes = currentHour * 60 + currentMinute;
 
           if (currentTimeInMinutes >= startTimeInMinutes && currentTimeInMinutes <= endTimeInMinutes) {
